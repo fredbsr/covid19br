@@ -353,7 +353,7 @@ Neste novo eixo de polarização, a <yt>exposição à morte importa</yt>.
 
 O medo da morte é tão grande que relativiza as outras dimensões
 
-Relacionando opiniões, prejuízo e pessoas conhecidas com as doença.
+Como se relacionam opiniões sobre isolamento, prejuízo econômico e proximidade com pessoas afetadas pela doença?
 
 ## Concordância com Isolamento  {.center}
 ```{r}
@@ -430,4 +430,20 @@ drt.df %>%
         text = element_text(family = "Lato"))
 ```
 
+# Discussão 
 
+1. Lideranças que sinalizam esforço para combater a pandemia podem extrair maiores benefícios políicos do que aquelas mais precupadas em evitar deterioração econômica.
+
+<br>
+
+2. A direita se dividiu, porém não é uma questão de renda, a divisão diminui à medida que o risco de morte se torna algo mais palpável.
+
+<br>
+
+<h2 class="center"><amar>Quem brinca com a morte corre o risco de morrer politicamente sozinho.</amar></h2>
+
+
+
+# {.center}
+
+<h1> OBRIGADO </h1>
