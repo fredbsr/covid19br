@@ -2,7 +2,7 @@
 title: 'O medo da morte flexibiliza perdas'
 subtitle: Consequências políticas da pandemia da Covid-19 no Brasil
 author: 
- - Carlos Pereira (FGV/BAPE) 
+ - Carlos Pereira (FGV/EBAPE) 
  - Amanda Medeiros (FGV/EBAPE) 
  - Frederico Bertholini (UnB/IPOL)
 date: "Abril, 2020"
@@ -113,7 +113,7 @@ plot_dens(df,ideologia_cat,favor_isol) +
                      labels=c("Totalmente\nContrário (1)",
                               "Indiferente (3)",
                               "Totalmente\nFavorável (5)")) +
-  scale_y_discrete("",expand = expansion(mult = c(0, .2))) +
+  scale_y_discrete("",expand = expansion(mult = c(.05, .2))) +
   tema_dens
   
 
@@ -131,7 +131,7 @@ plot_dens(df,ideologia_cat,time) +
 
 scale_x_continuous(breaks = c(1,7),
                      labels=c("Nem mais\n um dia (1)","Pelo tempo \nnecessário (7)")) +
-  scale_y_discrete("",expand = expansion(mult = c(0, .2))) +
+  scale_y_discrete("",expand = expansion(mult = c(.05, .2))) +
   tema_dens
 ```
 
@@ -150,7 +150,7 @@ plot_dens(df,ideologia_cat,trabbolso) +
                      labels=c("Totalmente\nContrário (1)",
                               "Indiferente (3)",
                               "Totalmente\nFavorável (5)")) +
-  scale_y_discrete("",expand = expansion(mult = c(0, .2))) +
+  scale_y_discrete("",expand = expansion(mult = c(.05, .2))) +
   tema_dens
   
 ```
@@ -169,7 +169,7 @@ plot_dens(df,ideologia_cat,trabgov) +
                      labels=c("Totalmente\nContrário (1)",
                               "Indiferente (3)",
                               "Totalmente\nFavorável (5)")) +
-  scale_y_discrete("",expand = expansion(mult = c(0, .2))) +
+  scale_y_discrete("",expand = expansion(mult = c(.05, .2))) +
   tema_dens
 
 ```
@@ -201,7 +201,7 @@ plot_dens(drt.df,coron_cat,favor_isol) +
                      labels=c("Totalmente\nContrário (1)",
                               "Indiferente (3)",
                               "Totalmente\nFavorável (5)")) +
-  scale_y_discrete("",expand = expansion(mult = c(0, .2))) +
+  scale_y_discrete("",expand = expansion(mult = c(.05, .2))) +
   tema_dens
 ```
 
@@ -217,7 +217,7 @@ plot_dens(drt.df,coron_cat,time) +
 
 scale_x_continuous(breaks = c(1,7),
                      labels=c("Nem mais\n um dia (1)","Pelo tempo \nnecessário (7)")) +
-  scale_y_discrete("",expand = expansion(mult = c(0, .2))) +
+  scale_y_discrete("",expand = expansion(mult = c(.05, .2))) +
   tema_dens
 ```
 
@@ -236,7 +236,7 @@ plot_dens(drt.df,coron_cat,trabbolso) +
                      labels=c("Totalmente\nContrário (1)",
                               "Indiferente (3)",
                               "Totalmente\nFavorável (5)")) +
-  scale_y_discrete("",expand = expansion(mult = c(0, .2))) +
+  scale_y_discrete("",expand = expansion(mult = c(.05, .2))) +
   tema_dens
 
 ```
@@ -255,23 +255,25 @@ plot_dens(drt.df,coron_cat,trabgov) +
                      labels=c("Totalmente\nContrário (1)",
                               "Indiferente (3)",
                               "Totalmente\nFavorável (5)")) +
-  scale_y_discrete("",expand = expansion(mult = c(0, .2))) +
+  scale_y_discrete("",expand = expansion(mult = c(.05, .2))) +
   tema_dens
 
 ```
 
 # Isolamento é coisa de rico?
 
-- De rico, não. Mas quem acredita que pode ter mior prejuízo é menos aderente ao isolamento.
+- Não! Mas quem acredita que diz ter muito prejuízo é menos aderente ao isolamento.
 
-- Renda não tem relevância, mas o <amra>prejuízo econômico esperado</amar>, sim.
+- Renda não tem relevância, mas o <amar>prejuízo econômico esperado</amar>, sim.
 
-## Isolamento não é coisa de rico - faixas de renda
+- Diferença entre <amar>preferência</amar> por isolamento e <yt>possibilidade</yt> de realizá-lo.
+
+## Preferência pelo isolamento por faixas de renda
 
 ```{r}
 
-summ <- resumo(drt.df,renda_cat,trabgov)
-plot_dens(drt.df,renda_cat,trabgov) + 
+summ <- resumo(drt.df,renda_cat,favor_isol)
+plot_dens(drt.df,renda_cat,favor_isol) + 
   geom_segment(data=summ,aes(y = as.numeric(var),yend = as.numeric(var) + .6,x=mean,xend=mean),color="white",size=1) +
   geom_rect(data = summ,aes(ymin = as.numeric(var),ymax = as.numeric(var) + .6,xmin=ci_mean_low,xmax=ci_mean_hi),fill="white",alpha=0.25) +
   geom_label(data=summ,aes(label=paste("Média",sprintf("%1.1f", mean),"\u00b1",sprintf("%1.1f", ic)),x=mean,fill=var,y=var),position=position_nudge(y=.65),color="white",size=4,fontface="bold",family = "Lato",alpha=0.75) +
@@ -280,17 +282,17 @@ plot_dens(drt.df,renda_cat,trabgov) +
                      labels=c("Totalmente\nContrário (1)",
                               "Indiferente (3)",
                               "Totalmente\nFavorável (5)")) +
-  scale_y_discrete("",expand = expansion(mult = c(0, .2))) +
+  scale_y_discrete("",expand = expansion(mult = c(.05, .2))) +
   tema_dens
 
 ```
 
 
-## Prejuízo econômico {.center}
+## Preferência pelo isolamento por prejuízo econômico {.center}
 
 ```{r}
-summ <- resumo(drt.df,prejuizo,trabgov)
-plot_dens(drt.df,prejuizo,trabgov) + 
+summ <- resumo(drt.df,prejuizo,favor_isol)
+plot_dens(drt.df,prejuizo,favor_isol) + 
   geom_segment(data=summ,aes(y = as.numeric(var),yend = as.numeric(var) + .6,x=mean,xend=mean),color="white",size=1) +
   geom_rect(data = summ,aes(ymin = as.numeric(var),ymax = as.numeric(var) + .6,xmin=ci_mean_low,xmax=ci_mean_hi),fill="white",alpha=0.25) +
   geom_label(data=summ,aes(label=paste("Média",sprintf("%1.1f", mean),"\u00b1",sprintf("%1.1f", ic)),x=mean,fill=var,y=var),position=position_nudge(y=.65),color="white",size=4,fontface="bold",family = "Lato",alpha=0.75) +
@@ -299,7 +301,7 @@ plot_dens(drt.df,prejuizo,trabgov) +
                      labels=c("Totalmente\nContrário (1)",
                               "Indiferente (3)",
                               "Totalmente\nFavorável (5)")) +
-  scale_y_discrete("",expand = expansion(mult = c(0, .2))) +
+  scale_y_discrete("",expand = expansion(mult = c(.05, .2))) +
   tema_dens
 
 ```
@@ -319,7 +321,7 @@ O medo da morte é tão grande que relativiza as outras dimensões
 Relacionando opiniões, prejuízo e pessoas conhecidas com as doença.
 
 ## Concordância com Isolamento  {.center}
-```{r,fig.height=7}
+```{r}
 
 drt.df %>%
   ggplot(aes(y=as.numeric(favor_isol),
