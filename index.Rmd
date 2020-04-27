@@ -54,6 +54,41 @@ tema_dens <- tema_dens +
   theme(plot.margin = margin(0, 0, 0, 0, "cm"),
       text = element_text(family = "Lato") )
 
+# Função resumo
+my_ridge = function(data, xvar,yvar, facet.var=NULL,fonte="Lato") {
+  data <- data %>% dplyr::filter(!is.na(!! enquo(yvar)))
+    p = data %>%
+      ggplot(aes(x={{xvar}},y={{yvar}},fill={{yvar}},color={{yvar}},group={{yvar}})) +
+      geom_density_ridges() +
+      stat_summaryh(fun.x=mean, geom="vline", aes(xintercept=..x..),color="white") +
+      facet_grid(rows=vars({{facet.var}}),scales = "free_y",switch = "y") +
+      stat_summary(fun.data = "mean_cl_boot", geom="rect", 
+                    aes(ymin=-Inf,ymax=Inf#, 
+                        #label=paste0("media: ", ..x..)
+                        ),
+                    fill="white",
+                   color=NA,
+                    #size=3.5, 
+                    #hjust=0
+                    alpha=.5) +
+      stat_summaryh(fun.x=mean, geom="label", 
+                   aes(y=2, 
+                       label=paste0("media: ", round(..x..,1))),
+                   color="white",
+                   family=fonte,
+                   fontface="bold",
+                   alpha=.65,
+                   label.size=0,
+                   size=4, 
+                   hjust=1) +
+      scale_y_discrete(expand=expansion(c(0,0.05))) +
+      tema_dens +
+      theme(axis.text.y = element_blank(),
+            strip.text.y = element_text(angle = 45),
+            text = element_text(family = fonte))
+p   
+  }
+
 ```
 
 
@@ -67,9 +102,9 @@ Você veio me buscar?<br>
 <amar>Eu tenho acompanhado você há muito tempo...</amar><br>
 Eu sei.<br>
 <amar>Você está preparado? </amar><br>
-Meu corpo está, mas eu não estou.<br>
-<amar>Espere um instante.</amar><br>
-Todos vocês dizem isso, mas não há trégua.”<br>
+Meu corpo está, mas eu não estou.
+Espere um instante.<br>
+<amar>Todos vocês dizem isso, mas não há trégua.</amar>”<br>
 <br>
 <bold>O Sétimo Selo,<br> <yt>Ingmar Bergman</yt> (1956)</bold>
 
